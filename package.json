@@ -1,0 +1,22 @@
+{
+  "name": "dynamodb-prototype",
+  "version": "0.1.0",
+  "description": "Prototype application to explore directly connecting to dynamodb from a javascript client application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johngully/dynamodb-prototype.git"
+  },
+  "author": "John Gully",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johngully/dynamodb-prototype/issues"
+  },
+  "homepage": "https://github.com/johngully/dynamodb-prototype#readme",
+  "devDependencies": {
+    "aws-sdk": "^2.4.8"
+  }
+}
