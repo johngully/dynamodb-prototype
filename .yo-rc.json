@@ -1,0 +1,17 @@
+{
+  "generator-ng": {
+    "base": ".",
+    "coreModuleName": "shared",
+    "serverPort": 8000,
+    "codeFormat": {
+      "format": {
+        "indent": {
+          "style": "  "
+        }
+      }
+    },
+    "parserFormat": {
+      "sourceType": "module"
+    }
+  }
+}
