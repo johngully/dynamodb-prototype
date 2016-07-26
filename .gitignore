@@ -3,4 +3,4 @@ jspm_packages/
 node_modules/
 .DS_Store
 *.orig
-.aws
+aws.js

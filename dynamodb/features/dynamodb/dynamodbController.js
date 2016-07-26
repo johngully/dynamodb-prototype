@@ -1,7 +1,4 @@
 function dynamodbController() {
-  // const AWS = require('aws-sdk');
-  AWS.config.region = 'us-east-1';
-  const db = new AWS.DynamoDB.DocumentClient();
 
   const options = {
     tableName: 'ngPrototype'
@@ -10,11 +7,12 @@ function dynamodbController() {
   function add(key, value) {
     console.log(`add - "${key}": "${value}"`);
 
+    const db = new AWS.DynamoDB.DocumentClient();
     const params = {
       TableName: options.tableName,
       Item: {
         id: key,
-        itemValue: value.itemValue
+        itemValue: value
       }
     };
 
