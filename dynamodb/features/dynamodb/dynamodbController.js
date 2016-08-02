@@ -1,29 +1,45 @@
-function dynamodbController() {
+function dynamodbController($scope, itemsService) {
+  const items = [];
+  const item = {};
 
   const options = {
     tableName: 'ngPrototype'
   };
 
   function add(key, value) {
-    console.log(`add - "${key}": "${value}"`);
+    return itemsService.addItem(parseInt(key), value).then(resetItem).then(refresh);
+  }
 
-    const db = new AWS.DynamoDB.DocumentClient();
-    const params = {
-      TableName: options.tableName,
-      Item: {
-        id: key,
-        itemValue: value
-      }
-    };
-
-    db.put(params, function(err, data) {
-      if (err) console.log(err, err.stack); // an error occurred
-      else     console.log(data);           // successful response
+  function refresh() {
+    return itemsService.getItems().then((data) => {
+      angular.copy(data.Items, items);
+      $scope.$apply();
     });
   }
 
+  function resetItem() {
+    item.key = '';
+    item.value = '';
+  }
+
+  function logError(error) {
+    if (error) {
+      console.error(error, error.stack);
+    }
+  }
+
+  function init() {
+    resetItem();
+    refresh();
+  }
+
+  init()
+
   return {
-    add: add
+    add,
+    items,
+    item,
+    refresh
   };
 };
 

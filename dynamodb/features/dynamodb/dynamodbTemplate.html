@@ -1,4 +1,14 @@
 <div>
   <h1>dynamodbModule.dynamodbController</h1>
-  <button type="button" ng-click="dynamodbController.add(15, 'testvalue')">Add</button>
+  <label for="itemKey">Item Key</label>
+  <input id="itemKey" ng-model="dynamodbController.item.key" type="text"></input>
+  <br />
+  <label for="itemValue">Item Value</label>
+  <input id="itemValue" ng-model="dynamodbController.item.value" type="text"></input>
+  <br />
+  <button type="button" ng-click="dynamodbController.add(dynamodbController.item.key, dynamodbController.item.value)">Add</button>
+  <hr />
+  Current Item: {{dynamodbController}}
+  <h2>Items <button type="button" ng-click="dynamodbController.refresh()">Refresh</button><h2>
+  <p>{{dynamodbController.items}}</p>
 </div>
