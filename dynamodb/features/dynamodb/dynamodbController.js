@@ -1,13 +1,14 @@
 function dynamodbController($scope, itemsService) {
   const items = [];
-  const item = {};
+  const selectedItem = {};
+  const newItem = {};
 
   const options = {
     tableName: 'ngPrototype'
   };
 
-  function add(key, value) {
-    return itemsService.addItem(parseInt(key), value).then(resetItem).then(refresh);
+  function add(id, value) {
+    return itemsService.addItem(parseInt(id), value).then(resetNewItem).then(refresh);
   }
 
   function refresh() {
@@ -17,9 +18,13 @@ function dynamodbController($scope, itemsService) {
     });
   }
 
-  function resetItem() {
-    item.key = '';
-    item.value = '';
+  function selectItem(value) {
+    angular.copy(value, selectedItem);
+  }
+
+  function resetNewItem() {
+    newItem.id = '';
+    newItem.itemValue = '';
   }
 
   function logError(error) {
@@ -29,7 +34,7 @@ function dynamodbController($scope, itemsService) {
   }
 
   function init() {
-    resetItem();
+    resetNewItem();
     refresh();
   }
 
@@ -38,8 +43,11 @@ function dynamodbController($scope, itemsService) {
   return {
     add,
     items,
-    item,
-    refresh
+    newItem,
+    refresh,
+    selectedItem,
+    selectItem
+
   };
 };
 

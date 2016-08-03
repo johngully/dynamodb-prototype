@@ -1,14 +1,36 @@
 <div>
-  <h1>dynamodbModule.dynamodbController</h1>
-  <label for="itemKey">Item Key</label>
-  <input id="itemKey" ng-model="dynamodbController.item.key" type="text"></input>
+  <h2>Create new item</h2>
+  <label for="itemId">Item Id</label>
+  <input id="itemId" ng-model="dynamodbController.newItem.id" type="text"></input>
   <br />
   <label for="itemValue">Item Value</label>
-  <input id="itemValue" ng-model="dynamodbController.item.value" type="text"></input>
+  <input id="itemValue" ng-model="dynamodbController.newItem.itemValue" type="text"></input>
   <br />
-  <button type="button" ng-click="dynamodbController.add(dynamodbController.item.key, dynamodbController.item.value)">Add</button>
-  <hr />
-  Current Item: {{dynamodbController}}
-  <h2>Items <button type="button" ng-click="dynamodbController.refresh()">Refresh</button><h2>
-  <p>{{dynamodbController.items}}</p>
+  <button type="button" ng-click="dynamodbController.add(dynamodbController.newItem.id, dynamodbController.newItem.itemValue)">Add</button>
+</div>
+<div>
+  <h2>Selected Item</h2>
+  <label>Item Id</label>
+  {{dynamodbController.selectedItem.id}}
+  <br />
+  <label>Item Value</label>
+  {{dynamodbController.selectedItem.itemValue}}
+</div>
+<div>
+  <h2>Items</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in dynamodbController.items | orderBy:'-id'" ng-click="dynamodbController.selectItem(item)">
+        <td>{{item.id}}</td>
+        <td>{{item.itemValue}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" ng-click="dynamodbController.refresh()">Refresh</button>
 </div>
