@@ -1,7 +1,8 @@
-function dynamodbController($scope, itemsService) {
+function dynamodbController($scope, authService, itemsService) {
   const items = [];
   const selectedItem = {};
   const newItem = {};
+  const credentials = { username: 'dineth', password: '!Race2Win!'};
 
   const options = {
     tableName: 'ngPrototype'
@@ -22,6 +23,16 @@ function dynamodbController($scope, itemsService) {
     angular.copy(value, selectedItem);
   }
 
+  function login() {
+    authService.login(credentials.username, credentials.password,
+      function() {
+        init();
+      },
+      function() {
+        alert('Invalid user name or password.');
+      });
+  }
+
   function resetNewItem() {
     newItem.id = '';
     newItem.itemValue = '';
@@ -38,7 +49,7 @@ function dynamodbController($scope, itemsService) {
     refresh();
   }
 
-  init()
+  //init()
 
   return {
     add,
@@ -46,8 +57,9 @@ function dynamodbController($scope, itemsService) {
     newItem,
     refresh,
     selectedItem,
-    selectItem
-
+    selectItem,
+    credentials,
+    login
   };
 };
 

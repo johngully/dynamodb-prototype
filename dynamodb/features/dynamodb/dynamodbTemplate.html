@@ -1,4 +1,15 @@
 <div>
+  <h2>Login</h2>
+  <label for="username">User Name</label>
+  <input id="username" ng-model="dynamodbController.credentials.username" type="text"></input>
+  <br />
+  <label for="password">Password</label>
+  <input id="password" type="password" ng-model="dynamodbController.credentials.password" type="text"></input>
+  <br />
+  <button type="button" ng-click="dynamodbController.login()">Login</button>
+</div>
+<hr />
+<div>
   <h2>Create new item</h2>
   <label for="itemId">Item Id</label>
   <input id="itemId" ng-model="dynamodbController.newItem.id" type="text"></input>
