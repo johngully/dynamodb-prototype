@@ -1,3 +1,6 @@
+
+import _ from 'lodash';
+
 function dynamodbController($scope, itemsService) {
   const items = [];
   const selectedItem = {};
@@ -34,6 +37,8 @@ function dynamodbController($scope, itemsService) {
   }
 
   function init() {
+    debugger;
+    console.log(_);
     resetNewItem();
     refresh();
   }
